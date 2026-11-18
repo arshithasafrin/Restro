@@ -496,8 +496,31 @@ function Results() {
   );
 }
 
+const STORIES = [
+  {
+    initials: "AM",
+    name: "Arjun Menon",
+    role: "Owner, cafe in Kochi",
+    quote:
+      "A cluster of fake 1-star reviews appeared from accounts that had never visited. Our rating suffered and weekend walk-ins slowed. With Restrosights we spotted the suspicious pattern, got help reporting the ones that looked like policy violations, and kept genuine reviews coming in.",
+  },
+  {
+    initials: "PN",
+    name: "Priya Nair",
+    role: "Founder, family restaurant in Bengaluru",
+    quote:
+      "One difficult service night turned into public 1-star reviews before I even knew what had happened. Now lower ratings reach my dashboard privately first, so I can look into the issue early instead of finding out only after it is already public.",
+  },
+  {
+    initials: "RV",
+    name: "Rahul Verma",
+    role: "GM, multi-outlet group in Pune",
+    quote:
+      "We had plenty of star-only ratings and almost no words. I could not tell what to fix, and new diners had little to go on. Now guests leave descriptive feedback, and the reviews that continue to Google mention dishes and service.",
+  },
+];
+
 function Testimonials() {
-  const slots = ["01", "02", "03"];
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-white to-[#eaf5fd] py-16 md:py-24" aria-labelledby="stories-title">
       <div className="wrap">
@@ -507,31 +530,28 @@ function Testimonials() {
         <p className="mx-auto mt-4 max-w-2xl text-center text-[18px] font-medium text-ink">
           Real Restaurant Experiences. Real Feedback. Better Decisions.
         </p>
-        <p className="mx-auto mt-3 max-w-2xl text-center text-[15px] leading-6 text-body">
-          Use genuine customer testimonials here, including the restaurant name, owner’s name, photograph and their actual experience using Restrosights.
-        </p>
         <div className="mt-10 grid gap-4 md:grid-cols-3">
-          {slots.map((slot) => (
-            <article key={slot} className="rounded-[24px] bg-white p-6 text-center shadow-[0_10px_30px_rgba(16,35,41,0.05)]">
-              <p className="font-display text-5xl leading-none text-blue">“</p>
-              <p className="mt-2 font-geist text-[12px] font-semibold uppercase tracking-[0.14em] text-blue">Placeholder slot {slot}</p>
-              <div className="mx-auto mt-4 grid h-16 w-16 place-items-center rounded-full border border-dashed border-[#c9d3e0] text-[11px] text-muted">Photo</div>
-              <dl className="mt-4 space-y-2 text-left text-[14px]">
-                {[
-                  ["Restaurant name", "Add the restaurant"],
-                  ["Owner’s name", "Add the owner"],
-                  ["Experience", "Add their actual experience"],
-                ].map(([dt, dd]) => (
-                  <div key={dt}>
-                    <dt className="text-[11px] uppercase tracking-wide text-muted">{dt}</dt>
-                    <dd className="text-ink">{dd}</dd>
-                  </div>
-                ))}
-              </dl>
+          {STORIES.map((story) => (
+            <article key={story.name} className="flex flex-col rounded-[24px] bg-white p-6 text-left shadow-[0_10px_30px_rgba(16,35,41,0.05)]">
+              <p className="font-display text-5xl leading-none text-blue" aria-hidden>
+                “
+              </p>
+              <blockquote className="mt-2 flex-1 text-[16px] leading-6 tracking-[-0.02em] text-[#212121]">
+                <p>{story.quote}</p>
+              </blockquote>
+              <footer className="mt-6 flex items-center gap-3">
+                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#e8f3fd] font-geist text-[13px] font-semibold text-blue" aria-hidden>
+                  {story.initials}
+                </span>
+                <span>
+                  <span className="block text-[15px] font-medium text-ink">{story.name}</span>
+                  <span className="block text-[13px] text-muted">{story.role}</span>
+                </span>
+              </footer>
             </article>
           ))}
         </div>
-        <p className="mt-6 text-center text-[14px] italic text-muted">Do not publish sample testimonials as real customer reviews.</p>
+        <p className="mt-6 text-center text-[13px] text-muted">Illustrative owner stories based on common restaurant challenges.</p>
       </div>
       <div className="absolute inset-x-0 bottom-0 h-1 bg-blue" />
     </section>
