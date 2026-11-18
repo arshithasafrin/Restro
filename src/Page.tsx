@@ -76,10 +76,7 @@ const GROWTH_INCLUDED = [
   "Monthly guest-insight report.",
   "Google Business Profile support.",
   "Fake-review assistance where policy violations exist.",
-  "Instagram bio optimisation.",
 ];
-
-const PREMIUM_EXTRA = ["Brand Story video.", "Location Highlight video."];
 
 export default function Page({ onDemo }: { onDemo: () => void }) {
   return (
@@ -327,7 +324,7 @@ function Features() {
           </article>
           <article className="soft-card">
             <h3 className="font-display text-[18px] font-medium">Restaurant Brand Videos</h3>
-            <p className="mt-2 text-[15px] leading-6 text-body">Premium plan customers also receive a Brand Story video and a Location Highlight video.</p>
+            <p className="mt-2 text-[15px] leading-6 text-body">A Brand Story video and a Location Highlight video.</p>
           </article>
         </div>
       </div>
@@ -596,7 +593,7 @@ function Pricing({ onDemo }: { onDemo: () => void }) {
               Popular
             </span>
             <h3 className="font-geist text-[20px] font-semibold tracking-[-0.03em] text-black">Premium</h3>
-            <p className="mt-1 text-[15px] text-muted">Everything in Growth, plus brand videos</p>
+            <p className="mt-1 text-[15px] text-muted">Everything in Growth</p>
             <p className="mt-5 font-display text-[40px] font-medium leading-none tracking-[-0.04em] text-black">₹24,999</p>
             <button type="button" className="btn btn-gold mt-6" onClick={onDemo}>
               Get Started with Premium
@@ -606,11 +603,6 @@ function Pricing({ onDemo }: { onDemo: () => void }) {
               <li className="flex gap-2 text-[14px] font-medium leading-5 text-ink">
                 <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-[#1769ee]" /> Everything in Growth
               </li>
-              {PREMIUM_EXTRA.map((item) => (
-                <li key={item} className="flex gap-2 text-[14px] leading-5 text-body">
-                  <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-[#1769ee]" /> {item}
-                </li>
-              ))}
             </ul>
           </article>
         </div>
