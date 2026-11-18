@@ -13,12 +13,10 @@ import {
   CardStack,
   FeedbackPhone,
   FeedbackSnippet,
-  InstagramCompare,
   MenuPhone,
   MiniConcern,
   MiniKpis,
   NotificationsPhone,
-  PolicyCard,
   ProfilePhone,
   ProfileSnippet,
   QrPhone,
@@ -26,7 +24,6 @@ import {
   RatingBars,
   ReportCard,
   SplashPhone,
-  VideoThumbs,
 } from "./components/mockups";
 
 function Reveal({ children, className = "" }: { children: ReactNode; className?: string }) {
@@ -287,7 +284,7 @@ function Features() {
             Everything Your Restaurant Needs to Manage <Blue>Its Reputation</Blue>
           </H2>
         </div>
-        <div className="mt-12 grid items-center gap-4 lg:grid-cols-[1fr_300px_1fr]">
+        <div className="mt-12 grid items-center gap-6 lg:grid-cols-[1fr_300px_1fr]">
           <div className="grid gap-4">
             <Feature title="QR Review Stand" body="A professional physical stand that gives diners an easy way to access your feedback and review journey.">
               <QrStand />
@@ -314,17 +311,15 @@ function Features() {
           <article className="soft-card">
             <h3 className="font-display text-[18px] font-medium">Fake Review Assistance</h3>
             <p className="mt-2 text-[15px] leading-6 text-body">Get help assessing suspicious reviews and reporting those that appear to violate platform policies. Legitimate customer criticism is not removed.</p>
-            <div className="mt-4"><PolicyCard /></div>
+            <div className="mt-4"><FeedbackSnippet /></div>
           </article>
           <article className="soft-card">
             <h3 className="font-display text-[18px] font-medium">Instagram Bio Optimisation</h3>
             <p className="mt-2 text-[15px] leading-6 text-body">Improve your restaurant’s Instagram profile presentation and business information.</p>
-            <div className="mt-4"><InstagramCompare /></div>
           </article>
           <article className="soft-card">
             <h3 className="font-display text-[18px] font-medium">Restaurant Brand Videos</h3>
             <p className="mt-2 text-[15px] leading-6 text-body">Premium plan customers also receive a Brand Story video and a Location Highlight video.</p>
-            <div className="mt-4"><VideoThumbs /></div>
           </article>
         </div>
       </div>

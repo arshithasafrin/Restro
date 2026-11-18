@@ -227,7 +227,7 @@ export function Phone({
 }) {
   return (
     <div
-      className={`glow-phone relative mx-auto ${size === "md" ? "max-w-[328px]" : "max-w-[410px]"} w-full ${className}`}
+      className={`glow-phone relative mx-auto ${size === "md" ? "max-w-[280px]" : "max-w-[300px]"} w-full ${className}`}
       role="img"
       aria-label={label}
     >
