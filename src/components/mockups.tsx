@@ -98,18 +98,18 @@ function OverviewBody() {
 export function SplashPhone({ className = "", size = "lg" }: { className?: string; size?: "lg" | "md" }) {
   return (
     <Phone className={className} size={size} label="Restrosights app opening on the splash screen, then the home overview">
-      <div className="relative h-full bg-[#071433]">
-        <div className="splash-layer absolute inset-0 flex flex-col bg-[radial-gradient(ellipse_at_50%_82%,#1d4ed8_0%,#0c2f86_42%,#071433_78%)] text-white">
-          <StatusBar light />
+      <div className="relative h-full bg-white">
+        <div className="splash-layer absolute inset-0 flex flex-col bg-white text-ink">
+          <StatusBar />
           <div className="flex flex-1 flex-col items-center justify-center px-6">
             <img
               src="/app-icon.png"
               alt=""
-              className="splash-icon h-[112px] w-[112px] rounded-[28px] shadow-[0_24px_40px_rgba(0,0,0,0.28)]"
+              className="splash-icon h-[112px] w-[112px] rounded-[28px] shadow-[0_24px_40px_rgba(16,35,41,0.12)]"
             />
-            <img src="/wordmark-white.svg" alt="Restrosights" className="mt-7 h-8 w-auto max-w-[78%]" />
+            <img src="/wordmark-on-light.svg" alt="Restrosights" className="mt-7 h-8 w-auto max-w-[78%]" />
           </div>
-          <p className="pb-8 text-center text-[12px] tracking-wide text-white/75">Reviews, understood.</p>
+          <p className="pb-8 text-center text-[12px] tracking-wide text-[#102329]/70">Reviews, understood.</p>
         </div>
         <div className="home-layer absolute inset-0 bg-white">
           <OverviewBody />
