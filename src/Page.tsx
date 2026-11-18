@@ -10,7 +10,6 @@ import {
   TextLink,
 } from "./components/ui";
 import {
-  CardStack,
   FeedbackPhone,
   FeedbackSnippet,
   MenuPhone,
@@ -182,7 +181,16 @@ function Problem() {
   return (
     <section className="bg-white pb-8 md:pb-16" aria-labelledby="problem-title">
       <div className="wrap grid items-center gap-12 lg:grid-cols-2">
-        <CardStack />
+        <picture className="mx-auto block w-full max-w-[520px]">
+          <source srcSet="/qr-stand.webp" type="image/webp" />
+          <img
+            src="/qr-stand.jpg"
+            alt="Restrosights Google review QR stand on a restaurant counter"
+            width={1200}
+            height={1200}
+            className="h-auto w-full rounded-[24px] shadow-[0_18px_40px_rgba(16,35,41,0.12)]"
+          />
+        </picture>
         <div>
           <H2 id="problem-title">
             What Happens After a Guest <Blue>Leaves Your Restaurant?</Blue>

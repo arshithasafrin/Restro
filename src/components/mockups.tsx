@@ -356,28 +356,6 @@ export function NotificationsPhone({ className = "", size = "lg" }: { className?
   );
 }
 
-export function CardStack() {
-  return (
-    <div className="relative mx-auto h-[300px] w-full max-w-[420px]" role="img" aria-label="Sample app cards: feedback, QR and total feedback">
-      <div className="absolute left-0 top-16 w-[200px] -rotate-6">
-        <FeedbackSnippet />
-      </div>
-      <div className="absolute left-14 top-6 w-[210px] rotate-2">
-        <div className={`${panel} p-3`}>
-          <p className="text-[12px] font-semibold">Sample Bistro</p>
-          <p className="text-[10px] text-[#7b8798]">Sample City</p>
-          <div className="mt-2 flex justify-center">
-            <QrMark className="h-16 w-16" />
-          </div>
-        </div>
-      </div>
-      <div className={`absolute right-0 top-0 w-[158px] rotate-6 ${panel} p-2.5`}>
-        <Stat label="Total Feedback" value="24" icon={<Icon name="star" className="h-3 w-3" />} tone="bg-[#e7f0ff] text-[#3b82f6]" />
-      </div>
-    </div>
-  );
-}
-
 export function MiniKpis() {
   return (
     <Stat label="Total Feedback" value="24" icon={<Icon name="star" className="h-3 w-3" />} tone="bg-[#e7f0ff] text-[#3b82f6]" />
