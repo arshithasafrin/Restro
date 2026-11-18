@@ -18,8 +18,6 @@ import {
   MiniConcern,
   MiniKpis,
   NotificationsPhone,
-  OverviewPhone,
-  PartnerMarquee,
   PolicyCard,
   ProfilePhone,
   ProfileSnippet,
@@ -27,7 +25,7 @@ import {
   QrStand,
   RatingBars,
   ReportCard,
-  SubscriptionPhone,
+  SplashPhone,
   VideoThumbs,
 } from "./components/mockups";
 
@@ -74,7 +72,7 @@ const FAQS = [
   ["What is included in the monthly report?", "The report helps identify what customers appreciate, recurring complaints and areas that may need attention."],
 ];
 
-const INCLUDED = [
+const GROWTH_INCLUDED = [
   "Professional QR Review Stand.",
   "Restrosights app and dashboard.",
   "Guest feedback collection.",
@@ -83,9 +81,9 @@ const INCLUDED = [
   "Google Business Profile support.",
   "Fake-review assistance where policy violations exist.",
   "Instagram bio optimisation.",
-  "Brand Story video.",
-  "Location Highlight video.",
 ];
+
+const PREMIUM_EXTRA = ["Brand Story video.", "Location Highlight video."];
 
 export default function Page({ onDemo }: { onDemo: () => void }) {
   return (
@@ -104,7 +102,6 @@ export default function Page({ onDemo }: { onDemo: () => void }) {
         <Results />
         <Testimonials />
         <Pricing onDemo={onDemo} />
-        <Partners />
         <Faq onDemo={onDemo} />
         <FinalCta onDemo={onDemo} />
       </main>
@@ -147,7 +144,7 @@ function Hero({ onDemo }: { onDemo: () => void }) {
           </div>
         </Reveal>
         <div className="float relative z-10 lg:translate-y-8">
-          <OverviewPhone />
+          <SplashPhone />
         </div>
       </div>
     </section>
@@ -300,7 +297,7 @@ function Features() {
             </Feature>
           </div>
           <div className="float">
-            <MenuPhone />
+            <MenuPhone size="md" />
             <p className="mt-3 text-center text-[15px] font-medium text-ink">Restrosights App & Dashboard</p>
             <p className="text-center text-[13px] text-muted">View guest responses and manage feedback through a central dashboard.</p>
           </div>
@@ -326,7 +323,7 @@ function Features() {
           </article>
           <article className="soft-card">
             <h3 className="font-display text-[18px] font-medium">Restaurant Brand Videos</h3>
-            <p className="mt-2 text-[15px] leading-6 text-body">Growth plan customers also receive a Brand Story video and a Location Highlight video.</p>
+            <p className="mt-2 text-[15px] leading-6 text-body">Premium plan customers also receive a Brand Story video and a Location Highlight video.</p>
             <div className="mt-4"><VideoThumbs /></div>
           </article>
         </div>
@@ -541,108 +538,62 @@ function Testimonials() {
   );
 }
 
-const PLANS = [
-  {
-    name: "Monthly",
-    price: "₹4,999",
-    cadence: "/month",
-    detail: "Billed monthly",
-    save: "",
-    popular: false,
-    button: "btn-primary btn-pill",
-  },
-  {
-    name: "6 Months",
-    price: "₹12,499",
-    cadence: "",
-    detail: "Billed every 6 months",
-    save: "Save ₹17,495 vs ₹29,994",
-    popular: false,
-    button: "btn-dark",
-  },
-  {
-    name: "12 Months",
-    price: "₹24,999",
-    cadence: "",
-    detail: "Billed yearly",
-    save: "Save ₹34,989 vs ₹59,988",
-    popular: true,
-    button: "btn-gold",
-  },
-] as const;
-
 function Pricing({ onDemo }: { onDemo: () => void }) {
   return (
     <section id="pricing" className="bg-white py-16 md:py-24" aria-labelledby="pricing-title">
       <div className="wrap">
-        <div className="grid items-center gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-          <div>
-            <Eyebrow>Pricing</Eyebrow>
-            <H2 id="pricing-title" className="mt-3">
-              Choose the Right Plan for <Blue>Your Restaurant.</Blue>
-            </H2>
-            <Lead className="mt-4 max-w-xl">
-              A complete reputation and guest-feedback solution for restaurants looking to build a stronger review process and understand customer experiences.
-            </Lead>
-          </div>
-          <div className="float hidden justify-end lg:flex">
-            <SubscriptionPhone />
-          </div>
+        <div className="mx-auto max-w-3xl text-center">
+          <Eyebrow>Pricing</Eyebrow>
+          <H2 id="pricing-title" className="mt-3">
+            Choose the Right Plan for <Blue>Your Restaurant.</Blue>
+          </H2>
+          <Lead className="mt-4">
+            A complete reputation and guest-feedback solution for restaurants looking to build a stronger review process and understand customer experiences.
+          </Lead>
         </div>
-        <div className="mt-14 grid items-stretch gap-5 pt-6 lg:grid-cols-3">
-          {PLANS.map((plan) => (
-            <article
-              key={plan.name}
-              className={`relative flex flex-col rounded-[24px] p-6 md:p-7 ${
-                plan.popular ? "bg-mist ring-1 ring-gold" : "bg-white ring-1 ring-[#ececec]"
-              }`}
-            >
-              {plan.popular && (
-                <span className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold px-3 py-1 text-[12px] font-semibold text-ink">
-                  Popular
-                </span>
-              )}
-              <h3 className="font-geist text-[20px] font-semibold tracking-[-0.03em] text-black">Growth</h3>
-              <p className="mt-1 text-[15px] font-medium text-ink">{plan.name}</p>
-              <p className="text-[14px] text-muted">{plan.detail}</p>
-              <p className="mt-5 font-display text-[40px] font-medium leading-none tracking-[-0.04em] text-black">
-                {plan.price}
-                {plan.cadence && <span className="text-[16px] text-muted">{plan.cadence}</span>}
-              </p>
-              <p className="mt-2 min-h-[20px] text-[13px] font-semibold text-ink">{plan.save}</p>
-              <button type="button" className={`btn mt-5 w-full rounded-full ${plan.button}`} onClick={onDemo}>
-                Get Started with Growth
-              </button>
-              <p className="mt-6 text-sm font-semibold text-ink">What’s included:</p>
-              <ul className="mt-3 space-y-2.5">
-                {INCLUDED.map((item) => (
-                  <li key={item} className="flex gap-2 text-[14px] leading-5 text-body">
-                    <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-[#1769ee]" /> {item}
-                  </li>
-                ))}
-              </ul>
-            </article>
-          ))}
+        <div className="mx-auto mt-14 grid max-w-[860px] items-stretch gap-5 pt-6 md:grid-cols-2">
+          <article className="flex flex-col rounded-[24px] bg-white p-6 ring-1 ring-[#ececec] md:p-7">
+            <h3 className="font-geist text-[20px] font-semibold tracking-[-0.03em] text-black">Growth</h3>
+            <p className="mt-1 text-[15px] text-muted">For restaurants building a stronger review process</p>
+            <p className="mt-5 font-display text-[40px] font-medium leading-none tracking-[-0.04em] text-black">₹12,499</p>
+            <button type="button" className="btn btn-primary btn-pill mt-6" onClick={onDemo}>
+              Get Started with Growth
+            </button>
+            <p className="mt-6 text-sm font-semibold text-ink">What’s included:</p>
+            <ul className="mt-3 space-y-2.5">
+              {GROWTH_INCLUDED.map((item) => (
+                <li key={item} className="flex gap-2 text-[14px] leading-5 text-body">
+                  <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-[#1769ee]" /> {item}
+                </li>
+              ))}
+            </ul>
+          </article>
+          <article className="relative flex flex-col rounded-[24px] bg-mist p-6 ring-1 ring-gold md:p-7">
+            <span className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold px-3 py-1 text-[12px] font-semibold text-ink">
+              Popular
+            </span>
+            <h3 className="font-geist text-[20px] font-semibold tracking-[-0.03em] text-black">Premium</h3>
+            <p className="mt-1 text-[15px] text-muted">Everything in Growth, plus brand videos</p>
+            <p className="mt-5 font-display text-[40px] font-medium leading-none tracking-[-0.04em] text-black">₹24,999</p>
+            <button type="button" className="btn btn-gold mt-6" onClick={onDemo}>
+              Get Started with Premium
+            </button>
+            <p className="mt-6 text-sm font-semibold text-ink">What’s included:</p>
+            <ul className="mt-3 space-y-2.5">
+              <li className="flex gap-2 text-[14px] font-medium leading-5 text-ink">
+                <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-[#1769ee]" /> Everything in Growth
+              </li>
+              {PREMIUM_EXTRA.map((item) => (
+                <li key={item} className="flex gap-2 text-[14px] leading-5 text-body">
+                  <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-[#1769ee]" /> {item}
+                </li>
+              ))}
+            </ul>
+          </article>
         </div>
         <p className="mx-auto mt-6 max-w-3xl text-center text-[12px] leading-5 text-muted">
           Confirm the final billing terms, setup charges and subscription conditions before publishing.
         </p>
-      </div>
-    </section>
-  );
-}
-
-function Partners() {
-  return (
-    <section className="bg-white py-8" aria-label="Placeholder restaurant names">
-      <div className="wrap text-center">
-        <p className="text-[18px] font-medium text-ink">
-          Restaurants, cafés and <Blue>multi-location groups</Blue>
-        </p>
-        <p className="mt-2 text-[13px] text-muted">Placeholder restaurant names — not real brands, customers or partners.</p>
-      </div>
-      <div className="mt-8">
-        <PartnerMarquee />
       </div>
     </section>
   );

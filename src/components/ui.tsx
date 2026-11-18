@@ -218,18 +218,28 @@ export function Phone({
   children,
   label,
   className = "",
+  size = "lg",
 }: {
   children: ReactNode;
   label: string;
   className?: string;
+  size?: "lg" | "md";
 }) {
   return (
-    <div className={`relative mx-auto w-[280px] sm:w-[300px] ${className}`} role="img" aria-label={label}>
-      <div className="rounded-[42px] bg-[#111] p-[10px] shadow-[0_30px_70px_rgba(16,35,41,0.18)] ring-1 ring-black/20">
-        <div className="relative h-[590px] overflow-hidden rounded-[32px] bg-white">
-          <div className="absolute left-1/2 top-[8px] z-20 h-[22px] w-[96px] -translate-x-1/2 rounded-full bg-black" />
-          {children}
-        </div>
+    <div
+      className={`glow-phone relative mx-auto ${size === "md" ? "max-w-[328px]" : "max-w-[410px]"} w-full ${className}`}
+      role="img"
+      aria-label={label}
+    >
+      <span className="glow-btn glow-btn-l1" />
+      <span className="glow-btn glow-btn-l2" />
+      <span className="glow-btn glow-btn-l3" />
+      <span className="glow-btn glow-btn-r" />
+      <div className="glow-rim" />
+      <div className="glow-body" />
+      <div className="glow-screen">
+        <div className="glow-island" />
+        {children}
       </div>
     </div>
   );

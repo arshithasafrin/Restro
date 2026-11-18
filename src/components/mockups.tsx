@@ -1,418 +1,284 @@
 import type { ReactNode } from "react";
 import { Icon, Phone, StatusBar } from "./ui";
 
-const NAME = "Sample Bistro";
-const CITY = "Sample City";
-const REVIEW_URL = "https://review.samplebistro.example/sample-bistro";
-const GOOGLE_URL = "https://g.page/sample-bistro/review";
+const card = "rounded-[20px] bg-white p-3.5 shadow-[0_1px_4px_rgba(12,12,13,0.05),0_1px_4px_rgba(12,12,13,0.1)]";
 
-function Shell({
+function GlowScreen({
+  kicker,
+  title,
   children,
-  label,
-  className = "",
-  back = false,
 }: {
+  kicker: string;
+  title: string;
   children: ReactNode;
-  label: string;
-  className?: string;
-  back?: boolean;
 }) {
   return (
-    <Phone className={className} label={label}>
-      <div className="relative flex h-full flex-col bg-[linear-gradient(180deg,#eef3ff_0%,#f6f8fc_42%,#ffffff_100%)] font-sans text-[#1c2740]" aria-hidden>
-        <StatusBar />
-        <div className="flex items-center justify-between px-3.5 pt-1">
-          {back ? (
-            <span className="text-[13px] font-semibold text-[#1a73e8]">‹ Menu</span>
-          ) : (
-            <span />
-          )}
-          <span className="ml-auto flex items-center gap-1">
-            <span className="grid h-7 w-7 place-items-center rounded-full bg-[#e6eef8] text-[11px] font-bold text-[#44556e]">S</span>
-            <span className="text-[9px] text-[#9aa6b8]">▾</span>
+    <div className="flex h-full flex-col bg-[#0085ee] font-sans text-white">
+      <StatusBar light />
+      <div className="px-4 pb-5 pt-1">
+        <div className="flex items-center justify-between">
+          <span className="flex items-center gap-2">
+            <img src="/app-icon.png" alt="" className="h-7 w-7 rounded-lg" />
+            <span className="text-[13px] font-semibold">Sample Bistro</span>
+          </span>
+          <span className="grid h-8 w-8 place-items-center rounded-full bg-white/15">
+            <Icon name="bell" className="h-4 w-4" />
           </span>
         </div>
-        <div className="min-h-0 flex-1 overflow-hidden px-3 pt-2">{children}</div>
-        <div className="px-3 pb-3">
-          <p className="text-[8px] text-[#98a2b3]">© 2026 Restrosights. All rights reserved.</p>
-          <p className="text-[9px] font-medium text-[#1a73e8]">
-            Helping businesses get real feedback <span className="text-[#e11d48]">♥</span>
-          </p>
+        <div className="mt-4 flex gap-2 text-[12px] font-medium">
+          <span className="rounded-full bg-white px-3 py-1 text-[#102329]">Overview</span>
+          <span className="px-2 py-1 text-white/80">Feedback</span>
+          <span className="px-2 py-1 text-white/80">QR</span>
         </div>
-        <span className="absolute bottom-14 right-3 grid h-10 w-10 place-items-center rounded-[14px] bg-[#111] text-[9px] font-black text-[#25D366] shadow-[0_8px_18px_rgba(0,0,0,0.25)]">
-          WA
-        </span>
+        <p className="mt-4 text-[13px] text-white/80">{kicker}</p>
+        <p className="font-display text-[34px] font-medium leading-none tracking-[-0.04em]">{title}</p>
       </div>
-    </Phone>
-  );
-}
-
-function TileIcon({ children, className }: { children: ReactNode; className: string }) {
-  return <span className={`grid h-9 w-9 place-items-center rounded-xl ${className}`}>{children}</span>;
-}
-
-const TILES: { label: string; bg: string; fg: string; icon: ReactNode }[] = [
-  { label: "Overview", bg: "bg-[#e7f0ff]", fg: "text-[#3b82f6]", icon: <Icon name="store" className="h-4 w-4" /> },
-  { label: "Feedback", bg: "bg-[#fff1e4]", fg: "text-[#f59e0b]", icon: <Icon name="star" className="h-4 w-4" /> },
-  { label: "Notifications", bg: "bg-[#e7f8ee]", fg: "text-[#22a06b]", icon: <Icon name="bell" className="h-4 w-4" /> },
-  { label: "Review Link & QR", bg: "bg-[#f3e8ff]", fg: "text-[#8b5cf6]", icon: <Icon name="qr" className="h-4 w-4" /> },
-  { label: "Business Profile", bg: "bg-[#fff6d8]", fg: "text-[#d4a017]", icon: <Icon name="card" className="h-4 w-4" /> },
-  { label: "Subscription", bg: "bg-[#e8f1ff]", fg: "text-[#3b82f6]", icon: <Icon name="chart" className="h-4 w-4" /> },
-  { label: "Account", bg: "bg-[#e7f1ff]", fg: "text-[#3b82f6]", icon: <Icon name="shield" className="h-4 w-4" /> },
-  { label: "Install Restrosights", bg: "bg-[#e7f1ff]", fg: "text-[#3b82f6]", icon: <Icon name="arrow" className="h-4 w-4 rotate-90" /> },
-];
-
-export function MenuPhone({ className = "" }: { className?: string }) {
-  return (
-    <Shell className={className} label="Sample Restrosights mobile menu for Sample Bistro">
-      <p className="px-1 text-[15px] font-semibold tracking-[-0.03em] text-[#1b2740]">Welcome back, {NAME}! <span aria-hidden>👋</span></p>
-      <div className="mt-3 rounded-[22px] bg-white/70 p-2.5 shadow-[0_10px_30px_rgba(40,70,120,0.06)]">
-        <div className="grid grid-cols-2 gap-2">
-          {TILES.map((tile) => (
-            <div key={tile.label} className="flex min-h-[78px] flex-col items-center justify-center gap-1.5 rounded-2xl bg-white shadow-[0_4px_14px_rgba(28,51,83,0.05)]">
-              <TileIcon className={`${tile.bg} ${tile.fg}`}>{tile.icon}</TileIcon>
-              <span className="px-1 text-center text-[10px] font-medium leading-tight text-[#24324a]">{tile.label}</span>
-            </div>
-          ))}
-          <div className="flex min-h-[78px] flex-col items-center justify-center gap-1.5 rounded-2xl bg-white shadow-[0_4px_14px_rgba(28,51,83,0.05)]">
-            <TileIcon className="bg-[#fde8e8] text-[#ef4444]">
-              <Icon name="arrow" className="h-4 w-4" />
-            </TileIcon>
-            <span className="text-[10px] font-medium text-[#24324a]">Logout</span>
-          </div>
-        </div>
+      <div className="flex min-h-0 flex-1 flex-col gap-3 overflow-hidden rounded-t-[28px] bg-[#f8f7f7] px-3 pb-4 pt-3">
+        {children}
       </div>
-    </Shell>
-  );
-}
-
-function Kpi({
-  icon,
-  iconClass,
-  label,
-  value,
-}: {
-  icon: ReactNode;
-  iconClass: string;
-  label: string;
-  value: string;
-}) {
-  return (
-    <div className="rounded-xl bg-[#f6f8fc] px-2 py-2">
-      <span className={`grid h-5 w-5 place-items-center rounded-full text-[10px] ${iconClass}`}>{icon}</span>
-      <p className="mt-1 text-[8px] leading-tight text-[#7b8798]">{label}</p>
-      <p className="text-[16px] font-semibold leading-tight tracking-[-0.03em] text-[#1b2740]">{value}</p>
     </div>
   );
 }
 
-const BARS: [string, string, string][] = [
-  ["5", "42%", "10"],
-  ["4", "33%", "8"],
-  ["3", "8%", "2"],
-  ["2", "13%", "3"],
-  ["1", "4%", "1"],
+const BARS: [string, string][] = [
+  ["5", "42%"],
+  ["4", "33%"],
+  ["3", "8%"],
+  ["2", "13%"],
+  ["1", "4%"],
 ];
 
 export function RatingBars({ compact = false }: { compact?: boolean }) {
   return (
     <div>
-      {BARS.map(([star, width, count]) => (
-        <div key={star} className={`grid grid-cols-[28px_1fr_52px] items-center gap-1.5 ${compact ? "my-1" : "my-[5px]"}`}>
-          <span className="text-[10px] text-[#5c6b82]">
+      {BARS.map(([star, width]) => (
+        <div key={star} className={`grid grid-cols-[28px_1fr_36px] items-center gap-2 ${compact ? "my-1" : "my-1.5"}`}>
+          <span className="text-[12px] text-[#526b89]">
             {star} <span className="text-[#f5b400]">★</span>
           </span>
-          <span className="h-[6px] overflow-hidden rounded-full bg-[#e7edf5]">
-            <span className="block h-full rounded-full bg-[#3dce7a]" style={{ width }} />
+          <span className="h-1.5 overflow-hidden rounded-full bg-[#edf2f8]">
+            <span className="block h-full rounded-full bg-[#0085ee]" style={{ width }} />
           </span>
-          <span className="text-right text-[8px] text-[#8b97a8]">
-            {count} ({width})
-          </span>
+          <span className="text-right text-[11px] text-[#8b97a8]">{width}</span>
         </div>
       ))}
     </div>
   );
 }
 
-export function OverviewPhone({ className = "" }: { className?: string }) {
+function OverviewBody() {
   return (
-    <Shell back className={className} label="Sample Restrosights Review Overview for Sample Bistro">
-      <div className="rounded-[20px] bg-white p-3 shadow-[0_8px_24px_rgba(28,51,83,0.06)]">
-        <div className="flex items-center justify-between">
-          <h3 className="text-[14px] font-semibold">Review Overview</h3>
-          <span className="text-[10px] font-semibold text-[#1a73e8]">View All</span>
-        </div>
-        <div className="mt-2 grid grid-cols-2 gap-1.5">
-          <Kpi icon="★" iconClass="bg-[#e7f0ff] text-[#3b82f6]" label="Total Feedback" value="24" />
-          <Kpi icon="☺" iconClass="bg-[#e7f8ee] text-[#22a06b]" label="Positive Reviews" value="18" />
-          <Kpi icon="☹" iconClass="bg-[#ffecec] text-[#ef4444]" label="Negative Reviews" value="4" />
-          <Kpi icon="⚑" iconClass="bg-[#fff6d8] text-[#d4a017]" label="Top Concern" value="Service" />
-        </div>
-        <div className="mt-3 flex items-center justify-between border-t border-[#f0f3f8] pt-2">
-          <h3 className="text-[13px] font-semibold">Rating Distribution</h3>
-          <span className="text-[10px] font-semibold text-[#1a73e8]">View All</span>
-        </div>
-        <RatingBars />
+    <GlowScreen kicker="Overall rating" title="4.6">
+      <div className={card}>
+        {[
+          ["Total feedback", "24", "bg-[#e8f1ff] text-[#0085ee]"],
+          ["Positive reviews", "18", "bg-[#e7f8ee] text-[#15945b]"],
+          ["Needs attention", "4", "bg-[#ffecec] text-[#ee5656]"],
+        ].map(([label, value, tone]) => (
+          <div key={label} className="flex items-center gap-3 border-b border-[#f3f4f6] py-2 last:border-0">
+            <span className={`grid h-8 w-8 place-items-center rounded-full text-[12px] ${tone}`}>●</span>
+            <span className="flex-1 text-[13px] text-[#212121]">{label}</span>
+            <span className="text-[15px] font-semibold text-[#102329]">{value}</span>
+          </div>
+        ))}
       </div>
-    </Shell>
+      <div className={card}>
+        <p className="text-[14px] font-medium text-[#102329]">Rating distribution</p>
+        <RatingBars compact />
+      </div>
+      <div className={card}>
+        <p className="text-[12px] text-[#696969]">Recent feedback</p>
+        <p className="mt-1 text-[13px] text-[#212121]">The wait was longer than we expected.</p>
+        <p className="mt-1 text-[12px] text-[#f5b400]">★★☆☆☆ · Service</p>
+      </div>
+    </GlowScreen>
   );
 }
 
-const FEEDBACK = [
-  { stars: 2, text: "The wait was longer than we expected.", tag: "Service", tone: "attention" as const, when: "12 Oct, 2:14 pm" },
-  { stars: 5, text: "Lovely food and a calm dining room.", tag: "Food", tone: "positive" as const, when: "11 Oct, 8:02 pm" },
-  { stars: 4, text: "Staff were polite and the table was ready.", tag: "Service", tone: "positive" as const, when: "9 Oct, 1:20 pm" },
-];
-
-function StarsRow({ value }: { value: number }) {
+export function SplashPhone({ className = "", size = "lg" }: { className?: string; size?: "lg" | "md" }) {
   return (
-    <span className="text-[11px] tracking-tight">
-      {Array.from({ length: 5 }, (_, i) => (
-        <span key={i} className={i < value ? "text-[#f5b400]" : "text-[#d5dbe3]"}>
-          ★
-        </span>
-      ))}
-    </span>
+    <Phone className={className} size={size} label="Restrosights app opening on the splash screen, then the home overview">
+      <div className="relative h-full bg-[#071433]">
+        <div className="splash-layer absolute inset-0 flex flex-col bg-[radial-gradient(ellipse_at_50%_82%,#1d4ed8_0%,#0c2f86_42%,#071433_78%)] text-white">
+          <StatusBar light />
+          <div className="flex flex-1 flex-col items-center justify-center px-6">
+            <img
+              src="/app-icon.png"
+              alt=""
+              className="splash-icon h-[112px] w-[112px] rounded-[28px] shadow-[0_24px_40px_rgba(0,0,0,0.28)]"
+            />
+            <img src="/wordmark-white.svg" alt="Restrosights" className="mt-7 h-8 w-auto max-w-[78%]" />
+          </div>
+          <p className="pb-8 text-center text-[12px] tracking-wide text-white/75">Reviews, understood.</p>
+        </div>
+        <div className="home-layer absolute inset-0 bg-white">
+          <OverviewBody />
+        </div>
+      </div>
+    </Phone>
   );
 }
 
-function FeedbackCard({ item }: { item: (typeof FEEDBACK)[number] }) {
-  const attention = item.tone === "attention";
+export function MenuPhone({ className = "", size = "lg" }: { className?: string; size?: "lg" | "md" }) {
+  const tiles = [
+    ["Overview", "bg-[#e8f1ff] text-[#0085ee]"],
+    ["Feedback", "bg-[#fff4e5] text-[#d99400]"],
+    ["QR link", "bg-[#efeaff] text-[#6d5efc]"],
+    ["Outlets", "bg-[#e7f8ee] text-[#15945b]"],
+  ];
   return (
-    <article className={`rounded-xl border border-[#eef2f7] bg-white px-2.5 py-2 shadow-[0_2px_8px_rgba(28,51,83,0.04)] ${attention ? "border-l-[3px] border-l-[#f43f5e]" : "border-l-[3px] border-l-[#22c55e]"}`}>
-      <div className="flex items-center justify-between gap-2">
-        <span className="flex items-center gap-1">
-          <StarsRow value={item.stars} />
-          <span className="text-[9px] text-[#8b97a8]">{item.stars}/5</span>
-        </span>
-        <span className="text-[8px] text-[#98a2b3]">{item.when}</span>
-      </div>
-      <p className="mt-1 text-[11px] leading-4 text-[#24324a]">{item.text}</p>
-      <div className="mt-1.5 flex items-center justify-between">
-        <span className="rounded-full bg-[#f3f5f8] px-2 py-0.5 text-[8px] text-[#66758a]">{item.tag}</span>
-        <span className={`text-[9px] font-semibold ${attention ? "text-[#e11d48]" : "text-[#16a34a]"}`}>
-          {attention ? "Needs attention" : "Positive"}
-        </span>
-      </div>
-    </article>
-  );
-}
-
-export function FeedbackPhone({ className = "" }: { className?: string }) {
-  return (
-    <Shell back className={className} label="Sample Restrosights customer feedback list">
-      <div className="rounded-[20px] bg-white p-3 shadow-[0_8px_24px_rgba(28,51,83,0.06)]">
-        <h3 className="text-[15px] font-semibold">Recent Feedback</h3>
-        <p className="mt-0.5 text-[9px] leading-4 text-[#7b8798]">Customer messages received through Restrosights.</p>
-        <div className="mt-2 flex items-center gap-1">
-          <span className="rounded-lg border border-[#e6ebf2] bg-white px-2 py-1 text-[9px] text-[#44556e]">All ratings ▾</span>
-          <span className="rounded-full bg-[#1a73e8] px-2 py-1 text-[9px] font-semibold text-white">↻ Refresh</span>
-          <span className="text-[8px] text-[#98a2b3]">Updated just now</span>
-        </div>
-        <div className="mt-2 flex flex-wrap gap-1">
-          {[
-            ["All", true],
-            ["Service 2", false],
-            ["Food 1", false],
-          ].map(([label, on]) => (
-            <span key={String(label)} className={`rounded-full px-2 py-0.5 text-[9px] font-semibold ${on ? "bg-[#1a73e8] text-white" : "bg-[#f2f5f9] text-[#52627a]"}`}>
-              {label}
-            </span>
-          ))}
-        </div>
-        <div className="mt-2 space-y-1.5">
-          {FEEDBACK.slice(0, 2).map((item) => (
-            <FeedbackCard key={item.text} item={item} />
-          ))}
-        </div>
-        <div className="mt-3 border-t border-[#f0f3f8] pt-2">
-          <h4 className="text-[13px] font-semibold">Top Customer Concerns</h4>
-          <p className="text-[9px] text-[#98a2b3]">Based on private feedback</p>
-          {[
-            ["Service Related", "2"],
-            ["Food Related", "1"],
-          ].map(([label, count]) => (
-            <div key={label} className="mt-1.5 flex items-center justify-between text-[11px]">
-              <span className="flex items-center gap-1.5 text-[#334155]">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#93a0b4]" /> {label}
-              </span>
-              <span className="font-semibold">{count}</span>
+    <Phone className={className} size={size} label="Sample Restrosights home inside a Glow-style phone">
+      <GlowScreen kicker="Welcome back" title="Sample Bistro">
+        <div className="grid grid-cols-2 gap-2">
+          {tiles.map(([label, tone]) => (
+            <div key={label} className={`${card} flex flex-col items-start gap-2`}>
+              <span className={`grid h-9 w-9 place-items-center rounded-full ${tone}`}>●</span>
+              <span className="text-[13px] font-medium text-[#102329]">{label}</span>
             </div>
           ))}
         </div>
-      </div>
-    </Shell>
+      </GlowScreen>
+    </Phone>
   );
 }
 
-function QrMark({ className = "h-16 w-16" }: { className?: string }) {
-  const cells = [
-    1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1,
-    1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 1,
-    1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1,
-    1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0,
-    1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1,
-    0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1,
-    1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1,
-    0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0,
-    1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 1,
-    1, 0, 1, 1, 0, 0, 1, 0, 1, 0, 1,
-    0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1,
-  ];
+export function FeedbackPhone({ className = "", size = "lg" }: { className?: string; size?: "lg" | "md" }) {
+  const rows = [
+    ["The wait was longer than we expected.", "Service", "★★☆☆☆", true],
+    ["Lovely food and a calm dining room.", "Food", "★★★★★", false],
+    ["Staff were polite and the table was ready.", "Service", "★★★★☆", false],
+  ] as const;
   return (
-    <svg viewBox="0 0 11 11" className={className} aria-hidden>
-      {cells.map((on, i) => (on ? <rect key={i} x={i % 11} y={Math.floor(i / 11)} width="1" height="1" rx="0.15" fill="#10203c" /> : null))}
+    <Phone className={className} size={size} label="Sample recent feedback in a Glow-style phone">
+      <GlowScreen kicker="Recent feedback" title="3 new">
+        {rows.map(([text, tag, stars, attention]) => (
+          <article key={text} className={card}>
+            <div className="flex items-center justify-between">
+              <span className="text-[13px] text-[#f5b400]">{stars}</span>
+              <span className={`rounded-full px-2 py-0.5 text-[10px] font-semibold ${attention ? "bg-[#ffecec] text-[#ee5656]" : "bg-[#e7f8ee] text-[#15945b]"}`}>
+                {attention ? "Needs attention" : "Positive"}
+              </span>
+            </div>
+            <p className="mt-2 text-[13px] leading-5 text-[#212121]">{text}</p>
+            <p className="mt-2 text-[11px] text-[#696969]">{tag} · Sample Bistro</p>
+          </article>
+        ))}
+      </GlowScreen>
+    </Phone>
+  );
+}
+
+function QrMark() {
+  const cells = [1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1];
+  return (
+    <svg viewBox="0 0 5 5" className="h-24 w-24" aria-hidden>
+      {cells.map((on, i) => (on ? <rect key={i} x={i % 5} y={Math.floor(i / 5)} width="1" height="1" fill="#102329" /> : null))}
     </svg>
   );
 }
 
-export function QrPanel({ compact = false }: { compact?: boolean }) {
+export function QrPanel() {
   return (
-    <div className={`rounded-[18px] border border-[#e7edf5] bg-white ${compact ? "p-3" : "p-3"}`}>
-      {!compact && (
-        <>
-          <h3 className="text-[14px] font-semibold leading-tight">Outlet Review Links & QR Codes</h3>
-          <p className="mt-1 text-[9px] leading-4 text-[#7b8798]">Use the QR/link labelled for each outlet so your team can easily identify what belongs at each location.</p>
-        </>
-      )}
-      <div className={`${compact ? "" : "mt-2"} rounded-xl border border-[#e6ebf2] p-2.5`}>
-        <div className="flex items-start justify-between gap-2">
-          <div>
-            <p className="text-[13px] font-semibold">{NAME}</p>
-            <p className="text-[10px] text-[#7b8798]">{CITY}</p>
-          </div>
-          <span className="rounded-full bg-[#e8f8ef] px-2 py-0.5 text-[8px] font-semibold text-[#15803d]">Single location</span>
+    <div className={card}>
+      <p className="text-[14px] font-medium text-[#102329]">Review link & QR</p>
+      <p className="mt-1 text-[12px] text-[#696969]">Sample Bistro · Sample City</p>
+      <div className="mt-3 flex items-center gap-3">
+        <div className="rounded-2xl bg-[#f8f7f7] p-2">
+          <QrMark />
         </div>
-        <p className="mt-2 text-[8px] font-semibold uppercase tracking-[0.12em] text-[#98a2b3]">Restrosights link</p>
-        <p className="mt-1 truncate rounded-lg bg-[#f4f7fb] px-2 py-1.5 text-[8px] text-[#64748b]">{REVIEW_URL}</p>
-        <div className="mt-2 flex items-start gap-2">
-          <div className="text-center">
-            <div className="rounded-lg border border-[#e6ebf2] bg-white p-1">
-              <QrMark className="h-14 w-14" />
-            </div>
-            <p className="mt-1 text-[8px] text-[#98a2b3]">Tap to enlarge</p>
-          </div>
-          <div className="flex min-w-0 flex-1 flex-col gap-1.5">
-            <span className="rounded-lg bg-[#1a73e8] py-1.5 text-center text-[9px] font-semibold text-white">↗ View Review Page</span>
-            <span className="rounded-lg border border-[#8eb6ff] py-1.5 text-center text-[9px] font-semibold text-[#1a73e8]">Copy Link</span>
-            <span className="rounded-lg border border-[#8cdeb8] bg-[#f3fff8] py-1.5 text-center text-[9px] font-semibold text-[#15803d]">↓ Download QR</span>
-          </div>
+        <div className="min-w-0 flex-1 space-y-2">
+          <p className="truncate rounded-full bg-[#f8f7f7] px-3 py-1.5 text-[10px] text-[#696969]">review.samplebistro.example</p>
+          <span className="block rounded-full bg-[#0085ee] py-2 text-center text-[12px] font-medium text-white">Copy link</span>
+          <span className="block rounded-full bg-white py-2 text-center text-[12px] font-medium text-[#102329] shadow-[0_1px_2px_rgba(16,35,41,0.08)]">Download QR</span>
         </div>
       </div>
     </div>
   );
 }
 
-export function QrPhone({ className = "" }: { className?: string }) {
+export function QrPhone({ className = "", size = "lg" }: { className?: string; size?: "lg" | "md" }) {
   return (
-    <Shell back className={className} label="Sample Restrosights review link and QR screen for Sample Bistro">
-      <div className="rounded-[20px] bg-white p-1 shadow-[0_8px_24px_rgba(28,51,83,0.06)]">
+    <Phone className={className} size={size} label="Sample review link and QR in a Glow-style phone">
+      <GlowScreen kicker="Guest entry" title="Scan">
         <QrPanel />
-      </div>
-    </Shell>
+        <div className={card}>
+          <p className="text-[13px] font-medium text-[#102329]">Outlet</p>
+          <p className="mt-1 rounded-full bg-[#f8f7f7] px-3 py-2 text-[13px] text-[#212121]">Sample City · selected</p>
+        </div>
+      </GlowScreen>
+    </Phone>
   );
 }
 
-export function ProfilePhone({ className = "" }: { className?: string }) {
+export function ProfilePhone({ className = "", size = "lg" }: { className?: string; size?: "lg" | "md" }) {
   return (
-    <Shell back className={className} label="Sample Restrosights business profile for Sample Bistro">
-      <div className="rounded-[20px] bg-white p-3 shadow-[0_8px_24px_rgba(28,51,83,0.06)]">
-        <div className="flex items-center gap-2.5">
-          <img src="/apple-touch-icon.png" alt="" className="h-12 w-12 rounded-xl bg-[#f4f7fb]" />
-          <div>
-            <div className="flex items-center gap-1.5">
-              <p className="text-[14px] font-semibold">{NAME}</p>
-              <span className="rounded-full bg-[#e8f8ef] px-1.5 py-0.5 text-[8px] font-semibold text-[#15803d]">● Active</span>
+    <Phone className={className} size={size} label="Sample business profile in a Glow-style phone">
+      <GlowScreen kicker="Business profile" title="Active">
+        <div className={card}>
+          <div className="flex items-center gap-3">
+            <img src="/app-icon.png" alt="" className="h-12 w-12 rounded-2xl" />
+            <div>
+              <p className="text-[15px] font-semibold text-[#102329]">Sample Bistro</p>
+              <p className="text-[12px] text-[#696969]">Sample City</p>
             </div>
-            <p className="mt-0.5 text-[11px] text-[#64748b]">⌖ {CITY}</p>
           </div>
+          <p className="mt-3 truncate rounded-full bg-[#e8f1ff] px-3 py-2 text-[11px] text-[#0085ee]">g.page/sample-bistro/review</p>
+          <span className="mt-3 block rounded-full bg-[#0085ee] py-2 text-center text-[12px] font-medium text-white">Copy link</span>
         </div>
-        <div className="mt-3 flex items-center gap-2">
-          <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-[#e8f1ff] text-[11px] font-bold text-[#1a73e8]">G</span>
-          <div className="min-w-0 flex-1">
-            <p className="text-[11px] font-semibold">Google Review Link</p>
-            <p className="truncate rounded-lg bg-[#eef5ff] px-2 py-1 text-[8px] text-[#3b82f6]">{GOOGLE_URL}</p>
-          </div>
-          <span className="shrink-0 rounded-lg border border-[#8eb6ff] px-2 py-1.5 text-[9px] font-semibold text-[#1a73e8]">Copy Link</span>
-        </div>
-      </div>
-    </Shell>
+      </GlowScreen>
+    </Phone>
   );
 }
 
-export function SubscriptionPhone({ className = "" }: { className?: string }) {
-  const cells = [
-    ["Plan", "Growth"],
-    ["Billing", "Monthly"],
-    ["Amount", "₹4,999"],
-    ["Renewal", "Each month"],
+export function NotificationsPhone({ className = "", size = "lg" }: { className?: string; size?: "lg" | "md" }) {
+  const notes = [
+    ["Low rating", "2-star feedback captured privately"],
+    ["New response", "A guest continued toward Google"],
+    ["Outlet", "Sample City needs a look"],
   ];
   return (
-    <Shell back className={className} label="Sample Restrosights subscription screen showing the Growth plan at ₹4,999 a month">
-      <div className="rounded-[20px] bg-white p-3 shadow-[0_8px_24px_rgba(28,51,83,0.06)]">
-        <div className="flex items-start justify-between gap-2">
-          <h3 className="text-[16px] font-semibold">Subscription</h3>
-          <span className="rounded-full bg-[#fff4d6] px-2 py-1 text-center text-[8px] font-semibold leading-tight text-[#b7791f]">
-            Renewal Due
-            <br /> Soon
-          </span>
-        </div>
-        <p className="mt-1 text-[11px] leading-4 text-[#52627a]">Your current Restrosights plan and renewal details.</p>
-        <div className="mt-3 grid grid-cols-2 gap-1.5">
-          {cells.map(([label, value]) => (
-            <div key={label} className="rounded-xl bg-[#f6f8fc] px-2.5 py-2">
-              <p className="text-[9px] text-[#8b97a8]">{label}</p>
-              <p className="text-[13px] font-semibold text-[#1b2740]">{value}</p>
-            </div>
-          ))}
-          <div className="rounded-xl bg-[#f6f8fc] px-2.5 py-2">
-            <p className="text-[9px] text-[#8b97a8]">Days Remaining</p>
-            <p className="text-[13px] font-semibold">30</p>
-          </div>
-        </div>
-      </div>
-    </Shell>
-  );
-}
-
-export function NotificationsPhone({ className = "" }: { className?: string }) {
-  return (
-    <Shell back className={className} label="Sample Restrosights notifications screen">
-      <div className="rounded-[20px] bg-white p-3 shadow-[0_8px_24px_rgba(28,51,83,0.06)]">
-        <h3 className="text-[15px] font-semibold">Notifications & Updates</h3>
-        <p className="mt-1 text-[11px] leading-4 text-[#52627a]">Monthly reports, promotions and important Restrosights updates.</p>
-        <div className="mt-3 rounded-2xl bg-[#f4f7ff] p-3">
-          <p className="text-[13px] font-semibold">Phone Push Notifications</p>
-          <p className="mt-1 text-[10px] leading-4 text-[#52627a]">
-            Enable this once to receive Restrosights reports, promotions and important updates on this phone, even when Restrosights is closed.
-          </p>
-          <div className="mt-3 rounded-xl bg-[#6d5efc] py-2.5 text-center text-[12px] font-semibold text-white">Enable Notifications</div>
-        </div>
-        <p className="mt-6 text-center text-[11px] text-[#98a2b3]">No notifications or updates yet.</p>
-      </div>
-    </Shell>
+    <Phone className={className} size={size} label="Sample notifications in a Glow-style phone">
+      <GlowScreen kicker="Notifications" title="Updates">
+        {notes.map(([title, body]) => (
+          <article key={title} className={`${card} flex gap-3`}>
+            <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-[#e8f1ff] text-[#0085ee]">
+              <Icon name="bell" className="h-4 w-4" />
+            </span>
+            <span>
+              <span className="block text-[13px] font-semibold text-[#102329]">{title}</span>
+              <span className="mt-0.5 block text-[12px] leading-5 text-[#696969]">{body}</span>
+            </span>
+          </article>
+        ))}
+      </GlowScreen>
+    </Phone>
   );
 }
 
 export function QrStand({ className = "" }: { className?: string }) {
   return (
     <div className={className}>
-      <QrPanel compact />
+      <QrPanel />
     </div>
   );
 }
 
 export function FeedbackSnippet() {
-  return <FeedbackCard item={FEEDBACK[0]} />;
+  return (
+    <article className={card}>
+      <div className="flex items-center justify-between">
+        <span className="text-[13px] text-[#f5b400]">★★☆☆☆</span>
+        <span className="rounded-full bg-[#ffecec] px-2 py-0.5 text-[10px] font-semibold text-[#ee5656]">Needs attention</span>
+      </div>
+      <p className="mt-2 text-[13px] leading-5 text-[#212121]">The wait was longer than we expected.</p>
+    </article>
+  );
 }
 
 export function ReportCard({ className = "" }: { className?: string }) {
   return (
-    <div className={`rounded-[16px] border border-[#e7edf5] bg-white p-3 ${className}`}>
-      <div className="flex items-center justify-between">
-        <p className="text-[13px] font-semibold text-[#1b2740]">Rating Distribution</p>
-        <span className="text-[10px] font-semibold text-[#1a73e8]">View All</span>
-      </div>
+    <div className={`${card} ${className}`}>
+      <p className="text-[14px] font-medium text-[#102329]">Rating distribution</p>
       <RatingBars compact />
     </div>
   );
@@ -420,57 +286,59 @@ export function ReportCard({ className = "" }: { className?: string }) {
 
 export function ProfileSnippet() {
   return (
-    <div className="rounded-[14px] border border-[#e7edf5] bg-white p-3">
+    <div className={card}>
       <div className="flex items-center gap-2">
-        <img src="/apple-touch-icon.png" alt="" className="h-10 w-10 rounded-lg" />
+        <img src="/app-icon.png" alt="" className="h-10 w-10 rounded-xl" />
         <div>
-          <p className="text-[13px] font-semibold text-[#1b2740]">{NAME}</p>
-          <p className="text-[11px] text-[#64748b]">⌖ {CITY}</p>
+          <p className="text-[13px] font-semibold text-[#102329]">Sample Bistro</p>
+          <p className="text-[11px] text-[#0085ee]">Google review link</p>
         </div>
-        <span className="ml-auto rounded-full bg-[#e8f8ef] px-1.5 py-0.5 text-[8px] font-semibold text-[#15803d]">Active</span>
       </div>
-      <p className="mt-2 truncate rounded-lg bg-[#eef5ff] px-2 py-1 text-[9px] text-[#3b82f6]">{GOOGLE_URL}</p>
     </div>
   );
 }
 
 export function MiniKpis() {
   return (
-    <div className="grid grid-cols-2 gap-1.5">
-      <Kpi icon="★" iconClass="bg-[#e7f0ff] text-[#3b82f6]" label="Total Feedback" value="24" />
-      <Kpi icon="☺" iconClass="bg-[#e7f8ee] text-[#22a06b]" label="Positive Reviews" value="18" />
+    <div className="grid grid-cols-2 gap-2">
+      <div className={card}>
+        <p className="text-[11px] text-[#696969]">Total feedback</p>
+        <p className="text-[22px] font-semibold text-[#102329]">24</p>
+      </div>
+      <div className={card}>
+        <p className="text-[11px] text-[#696969]">Positive</p>
+        <p className="text-[22px] font-semibold text-[#102329]">18</p>
+      </div>
     </div>
   );
 }
 
 export function MiniConcern() {
   return (
-    <div className="rounded-xl bg-[#f6f8fc] px-3 py-2">
-      <span className="grid h-5 w-5 place-items-center rounded-full bg-[#fff6d8] text-[10px] text-[#d4a017]">⚑</span>
-      <p className="mt-1 text-[8px] text-[#7b8798]">Top Concern</p>
-      <p className="text-[16px] font-semibold text-[#1b2740]">Service</p>
+    <div className={card}>
+      <p className="text-[11px] text-[#696969]">Top concern</p>
+      <p className="text-[22px] font-semibold text-[#102329]">Service</p>
     </div>
   );
 }
 
 export function CardStack() {
   return (
-    <div className="relative mx-auto h-[380px] w-full max-w-[460px]" role="img" aria-label="Stacked sample Restrosights cards: feedback, review link and QR">
-      <div className="absolute left-0 top-16 w-[230px] -rotate-6 rounded-[18px] bg-white p-3 shadow-xl ring-1 ring-black/5">
-        <FeedbackCard item={FEEDBACK[0]} />
+    <div className="relative mx-auto h-[360px] w-full max-w-[460px]" role="img" aria-label="Stacked sample cards for feedback, QR and a review link">
+      <div className={`absolute left-2 top-16 w-[220px] -rotate-6 ${card}`}>
+        <p className="text-[12px] font-medium text-[#102329]">Needs attention</p>
+        <p className="mt-2 text-[13px] text-[#212121]">The wait was longer than we expected.</p>
       </div>
-      <div className="absolute left-16 top-6 w-[240px] rotate-3 rounded-[18px] bg-white p-3 shadow-xl ring-1 ring-black/5">
-        <p className="text-[12px] font-semibold">{NAME}</p>
-        <p className="text-[10px] text-[#7b8798]">{CITY}</p>
-        <div className="mt-2 flex justify-center rounded-lg border border-[#e6ebf2] p-2">
-          <QrMark className="h-20 w-20" />
+      <div className={`absolute left-16 top-8 w-[230px] rotate-2 ${card}`}>
+        <p className="text-[13px] font-semibold text-[#102329]">Sample Bistro</p>
+        <div className="mt-2 flex justify-center">
+          <QrMark />
         </div>
-        <p className="mt-1 text-center text-[9px] text-[#98a2b3]">Tap to enlarge</p>
       </div>
-      <div className="absolute right-0 top-0 w-[210px] rotate-6 rounded-[18px] bg-[#1a73e8] p-4 text-white shadow-[0_18px_40px_rgba(26,115,232,0.35)]">
+      <div className="absolute right-0 top-0 w-[210px] rotate-6 rounded-[22px] bg-[#0085ee] p-4 text-white shadow-[0_18px_40px_rgba(0,133,238,0.35)]">
         <img src="/logo-dark.png" alt="" className="h-5 w-auto" />
-        <p className="mt-6 text-[18px] font-semibold leading-6">View Review Page</p>
-        <p className="mt-2 text-[11px] text-white/80">Sample link for {NAME}</p>
+        <p className="mt-8 text-[20px] font-medium leading-6">Copy link</p>
+        <p className="mt-2 text-[12px] text-white/80">Sample review page</p>
       </div>
     </div>
   );
@@ -478,9 +346,10 @@ export function CardStack() {
 
 export function PolicyCard() {
   return (
-    <div>
-      <FeedbackCard item={FEEDBACK[0]} />
-      <p className="mt-2 text-[11px] leading-4 text-[#71809a]">Legitimate customer criticism is not removed.</p>
+    <div className={card}>
+      <p className="text-[13px] font-semibold text-[#102329]">Report status</p>
+      <p className="mt-1 text-[12px] font-medium text-[#0085ee]">Policy review</p>
+      <p className="mt-2 text-[12px] leading-5 text-[#696969]">Legitimate customer criticism is not removed.</p>
     </div>
   );
 }
@@ -492,11 +361,11 @@ export function InstagramCompare() {
         ["Before", "link in bio"],
         ["After", "Hours · Location · Menu"],
       ].map(([label, line]) => (
-        <div key={label} className="rounded-2xl border border-[#e7edf5] bg-white p-2 text-center">
-          <p className="text-[9px] font-bold uppercase tracking-wide text-[#98a2b3]">{label}</p>
-          <img src="/apple-touch-icon.png" alt="" className="mx-auto mt-1 h-8 w-8 rounded-lg" />
-          <p className="mt-1 text-[11px] font-semibold text-[#1b2740]">{NAME}</p>
-          <p className="text-[10px] text-[#64748b]">{line}</p>
+        <div key={label} className={`${card} text-center`}>
+          <p className="text-[10px] font-semibold uppercase tracking-wide text-[#696969]">{label}</p>
+          <img src="/app-icon.png" alt="" className="mx-auto mt-2 h-8 w-8 rounded-lg" />
+          <p className="mt-1 text-[12px] font-semibold text-[#102329]">Sample Bistro</p>
+          <p className="text-[11px] text-[#696969]">{line}</p>
         </div>
       ))}
     </div>
@@ -507,45 +376,14 @@ export function VideoThumbs() {
   return (
     <div className="grid grid-cols-2 gap-2" role="img" aria-label="Sample Brand Story and Location Highlight video thumbnails">
       {[
-        ["Brand Story", "from-[#1a73e8] to-[#8eb6ff]"],
-        ["Location Highlight", "from-[#10203c] to-[#1a73e8]"],
+        ["Brand Story", "from-[#0085ee] to-[#72bdf7]"],
+        ["Location Highlight", "from-[#102329] to-[#0085ee]"],
       ].map(([title, gradient]) => (
-        <div key={title} className={`relative flex h-24 items-end overflow-hidden rounded-2xl bg-gradient-to-br ${gradient} p-2 text-white`}>
-          <span className="absolute left-1/2 top-1/2 grid h-8 w-8 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-white text-[#1a73e8]">
+        <div key={title} className={`relative flex h-24 items-end rounded-[20px] bg-gradient-to-br ${gradient} p-2 text-white shadow-[0_8px_20px_rgba(16,35,41,0.12)]`}>
+          <span className="absolute left-1/2 top-1/2 grid h-8 w-8 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-white text-[#0085ee]">
             <Icon name="play" className="h-3.5 w-3.5" />
           </span>
-          <p className="text-[11px] font-semibold">{title}</p>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-const PARTNERS = [
-  ["Bistro Ipsum", "from-[#f7c1d9] to-[#d982b4]"],
-  ["Cafe Lorem", "from-[#d9c7ff] to-[#8d74d6]"],
-  ["Kitchen Dolor", "from-[#ffe0a8] to-[#e2a84b]"],
-  ["Table Amet", "from-[#b7f0d2] to-[#3aaa78]"],
-  ["Grill Sit", "from-[#ffd0b8] to-[#e07a4c]"],
-  ["Bar Elit", "from-[#c6e4ff] to-[#4aa0e8]"],
-];
-
-export function PartnerMarquee() {
-  const loop = [...PARTNERS, ...PARTNERS];
-  return (
-    <div className="marquee overflow-hidden" aria-label="Placeholder restaurant names, not real brands">
-      {[false, true].map((rev) => (
-        <div key={String(rev)} className={`marquee-track py-2 ${rev ? "marquee-rev mt-4" : ""}`}>
-          {loop.map(([name, gradient], index) => (
-            <article key={`${name}-${index}-${String(rev)}`} className={`relative h-[210px] w-[168px] shrink-0 overflow-hidden rounded-[22px] bg-gradient-to-br ${gradient} shadow-[0_10px_30px_rgba(16,35,41,0.08)]`}>
-              <span className="absolute bottom-3 left-3 right-3 flex items-center gap-2 text-white">
-                <span className="grid h-7 w-7 place-items-center rounded-full bg-white/25">
-                  <Icon name="store" className="h-3.5 w-3.5" />
-                </span>
-                <span className="text-[13px] font-semibold">{name}</span>
-              </span>
-            </article>
-          ))}
+          <p className="text-[12px] font-semibold">{title}</p>
         </div>
       ))}
     </div>
