@@ -615,14 +615,8 @@ export function Footer({ onDemo }: { onDemo: () => void }) {
         </div>
       </div>
       <div className="border-t border-line">
-        <div className="wrap flex flex-col gap-3 py-5 text-sm text-muted md:flex-row md:items-center md:justify-between">
-          <div className="space-y-1">
-            <p>© 2026 Restrosights. All rights reserved.</p>
-            <p>Ready to improve your restaurant’s reputation? Book a demo today.</p>
-          </div>
-          <button type="button" className="self-start font-medium text-blue hover:underline md:self-auto" onClick={onDemo}>
-            Book a Free Demo
-          </button>
+        <div className="wrap py-5 text-sm text-muted">
+          <p>© 2026 Restrosights. All rights reserved.</p>
         </div>
       </div>
     </footer>

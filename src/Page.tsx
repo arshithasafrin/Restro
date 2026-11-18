@@ -575,7 +575,9 @@ function Pricing({ onDemo }: { onDemo: () => void }) {
           <article className="flex flex-col rounded-[24px] bg-white p-6 ring-1 ring-[#ececec] md:p-7">
             <h3 className="font-geist text-[20px] font-semibold tracking-[-0.03em] text-black">Growth</h3>
             <p className="mt-1 text-[15px] text-muted">For restaurants building a stronger review process</p>
-            <p className="mt-5 font-display text-[40px] font-medium leading-none tracking-[-0.04em] text-black">₹12,499</p>
+            <p className="mt-5 font-display text-[40px] font-medium leading-none tracking-[-0.04em] text-black">
+              ₹12,499<span className="text-[16px] font-medium text-muted"> / 6 months</span>
+            </p>
             <button type="button" className="btn btn-primary btn-pill mt-6" onClick={onDemo}>
               Get Started with Growth
             </button>
@@ -594,15 +596,19 @@ function Pricing({ onDemo }: { onDemo: () => void }) {
             </span>
             <h3 className="font-geist text-[20px] font-semibold tracking-[-0.03em] text-black">Premium</h3>
             <p className="mt-1 text-[15px] text-muted">Everything in Growth</p>
-            <p className="mt-5 font-display text-[40px] font-medium leading-none tracking-[-0.04em] text-black">₹24,999</p>
+            <p className="mt-5 font-display text-[40px] font-medium leading-none tracking-[-0.04em] text-black">
+              ₹24,999<span className="text-[16px] font-medium text-muted"> / 12 months</span>
+            </p>
             <button type="button" className="btn btn-gold mt-6" onClick={onDemo}>
               Get Started with Premium
             </button>
             <p className="mt-6 text-sm font-semibold text-ink">What’s included:</p>
             <ul className="mt-3 space-y-2.5">
-              <li className="flex gap-2 text-[14px] font-medium leading-5 text-ink">
-                <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-[#1769ee]" /> Everything in Growth
-              </li>
+              {GROWTH_INCLUDED.map((item) => (
+                <li key={item} className="flex gap-2 text-[14px] leading-5 text-body">
+                  <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-[#1769ee]" /> {item}
+                </li>
+              ))}
             </ul>
           </article>
         </div>
