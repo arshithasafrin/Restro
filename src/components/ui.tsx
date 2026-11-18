@@ -432,6 +432,31 @@ export function Nav({ onDemo }: { onDemo: () => void }) {
   );
 }
 
+const WHATSAPP_NUMBER = "919538838427";
+
+export function demoRequestMessage(fields: Record<string, string>) {
+  const lines = ["New demo request from Restrosights website", ""];
+  for (const [label, value] of Object.entries(fields)) {
+    const text = value.trim();
+    if (text) lines.push(`${label}: ${text}`);
+  }
+  return lines.join("\n");
+}
+
+export function demoWhatsAppUrl(fields: Record<string, string>) {
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(demoRequestMessage(fields))}`;
+}
+
+function openWhatsApp(url: string) {
+  const mobile = window.matchMedia("(max-width: 720px)").matches;
+  if (!mobile) {
+    const popup = window.open(url, "_blank", "noopener,noreferrer");
+    if (!popup) window.location.assign(url);
+    return;
+  }
+  window.setTimeout(() => window.location.assign(url), 60);
+}
+
 export function ContactDialog({ open, onClose }: { open: boolean; onClose: () => void }) {
   const ref = useRef<HTMLDivElement>(null);
   const titleId = useId();
@@ -469,6 +494,10 @@ export function ContactDialog({ open, onClose }: { open: boolean; onClose: () =>
     };
   }, [open, onClose]);
 
+  useEffect(() => {
+    if (!open) setSent(false);
+  }, [open]);
+
   if (!open) return null;
 
   return (
@@ -497,10 +526,7 @@ export function ContactDialog({ open, onClose }: { open: boolean; onClose: () =>
         </p>
         {sent ? (
           <div className="mt-6 rounded-2xl bg-mist p-5" role="status">
-            <p className="font-medium text-ink">Thanks. Your demo request is noted on this page.</p>
-            <p className="mt-2 text-sm leading-6 text-muted">
-              This preview does not send email yet. Call +91 95388 38427 to book a demo.
-            </p>
+            <p className="font-medium text-ink">Opening WhatsApp to send your request…</p>
             <button type="button" className="btn btn-primary mt-4" onClick={onClose}>
               Close
             </button>
@@ -510,6 +536,21 @@ export function ContactDialog({ open, onClose }: { open: boolean; onClose: () =>
             className="mt-6 space-y-4"
             onSubmit={(event) => {
               event.preventDefault();
+              const form = event.currentTarget;
+              if (!form.reportValidity()) return;
+              const data = new FormData(form);
+              const fields = {
+                Name: String(data.get("name") ?? ""),
+                Restaurant: String(data.get("restaurant") ?? ""),
+                Email: String(data.get("email") ?? ""),
+                Phone: String(data.get("phone") ?? ""),
+                Message: String(data.get("message") ?? ""),
+              };
+              if (!fields.Name.trim() || !fields.Restaurant.trim() || !fields.Email.trim() || !fields.Phone.trim()) {
+                return;
+              }
+              const url = demoWhatsAppUrl(fields);
+              openWhatsApp(url);
               setSent(true);
             }}
           >
