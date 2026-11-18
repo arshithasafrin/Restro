@@ -499,7 +499,7 @@ export function ContactDialog({ open, onClose }: { open: boolean; onClose: () =>
           <div className="mt-6 rounded-2xl bg-mist p-5" role="status">
             <p className="font-medium text-ink">Thanks. Your demo request is noted on this page.</p>
             <p className="mt-2 text-sm leading-6 text-muted">
-              This preview does not send email yet. Use the placeholder contact details in the footer until the official inbox is connected.
+              This preview does not send email yet. Call +91 95388 38427 to book a demo.
             </p>
             <button type="button" className="btn btn-primary mt-4" onClick={onClose}>
               Close
@@ -602,47 +602,25 @@ export function Footer({ onDemo }: { onDemo: () => void }) {
         <div>
           <p className="font-geist text-sm font-semibold text-ink">Contact</p>
           <ul className="mt-4 space-y-3 text-[15px] text-body">
-            <li className="flex items-start gap-2">
-              <Icon name="mail" className="mt-0.5 h-4 w-4 text-blue" />
+            <li className="flex items-center gap-2">
+              <Icon name="phone" className="h-4 w-4 text-blue" />
               <span>
-                <span className="block text-xs uppercase tracking-wide text-muted">Email placeholder</span>
-                <a className="hover:text-blue" href="mailto:hello@restrosights.com">
-                  hello@restrosights.com
-                </a>
-              </span>
-            </li>
-            <li className="flex items-start gap-2">
-              <Icon name="phone" className="mt-0.5 h-4 w-4 text-blue" />
-              <span>
-                <span className="block text-xs uppercase tracking-wide text-muted">Phone placeholder</span>
-                <a className="hover:text-blue" href="tel:+910000000000">
-                  +91 00000 00000
+                <span className="block text-xs text-muted">Phone</span>
+                <a className="hover:text-blue" href="tel:+919538838427">
+                  +91 95388 38427
                 </a>
               </span>
             </li>
           </ul>
-          <div className="mt-4 flex gap-2" aria-label="Social media placeholders">
-            {["Instagram", "Facebook", "LinkedIn", "YouTube"].map((name) => (
-              <a
-                key={name}
-                href="#contact"
-                onClick={(event) => {
-                  event.preventDefault();
-                  onDemo();
-                }}
-                className="grid h-9 w-9 place-items-center rounded-full bg-mist text-xs font-semibold text-ink hover:text-blue"
-                aria-label={`${name} placeholder`}
-              >
-                {name.slice(0, 1)}
-              </a>
-            ))}
-          </div>
         </div>
       </div>
       <div className="border-t border-line">
         <div className="wrap flex flex-col gap-3 py-5 text-sm text-muted md:flex-row md:items-center md:justify-between">
-          <p>Ready to improve your restaurant’s reputation? Book a demo today.</p>
-          <button type="button" className="font-medium text-blue hover:underline" onClick={onDemo}>
+          <div className="space-y-1">
+            <p>© 2026 Restrosights. All rights reserved.</p>
+            <p>Ready to improve your restaurant’s reputation? Book a demo today.</p>
+          </div>
+          <button type="button" className="self-start font-medium text-blue hover:underline md:self-auto" onClick={onDemo}>
             Book a Free Demo
           </button>
         </div>
